@@ -1,5 +1,13 @@
+import Navbar from './components/Navbar'
+import ShoppingCart from './components/ShoppingCart'
+
 const App = (): JSX.Element => {
-  return <h1 className='text-3xl font-bold text-red-800'>Hello world!</h1>
+  return (
+    <>
+      <Navbar />
+      <ShoppingCart/>
+    </>
+  )
 }
 
 export default App
