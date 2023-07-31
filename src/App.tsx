@@ -5,7 +5,7 @@ const App = (): JSX.Element => {
   return (
     <>
       <Navbar />
-      <ShoppingCart/>
+      <ShoppingCart />
     </>
   )
 }

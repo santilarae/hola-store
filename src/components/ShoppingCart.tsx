@@ -1,13 +1,28 @@
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { UIComponents, closeComponent } from '../store/slices/ui'
 import { CartIcon, CloseIcon } from './Icons'
 
 const ShoppingCart = () => {
+  const { showShoppingCart } = useAppSelector(state => state.ui)
+  const dispatch = useAppDispatch()
   return (
-    <div className='fixed top-0 left-0 w-full h-screen bg-dark/75'>
-      <aside className='w-full h-full bg-light grid grid-rows-[min-content_1fr_min-content] ml-auto shadow-lg sm:max-w-sm'>
+    <div
+      className={`${
+        showShoppingCart ? 'visible' : 'invisible'
+      } fixed top-0 left-0 w-full h-screen bg-dark/75 transition duration-500`}
+    >
+      <aside
+        className={`${
+          showShoppingCart ? 'translate-x-0' : 'translate-x-full'
+        } w-full h-full bg-light grid grid-rows-[min-content_1fr_min-content] ml-auto shadow-lg sm:max-w-sm transition-transform duration-500`}
+      >
         <header className='p-2 flex justify-between items-center border-b border-neutral'>
           <CartIcon className='h-6 m-3' />
           <span className='text-3xl'>Cart</span>
-          <button className='p-3'>
+          <button
+            className='p-3'
+            onClick={() => dispatch(closeComponent(UIComponents.ShoppingCart))}
+          >
             <CloseIcon className='h-6' />
           </button>
         </header>
