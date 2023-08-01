@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Hero = () => {
   return (
     <section className="bg-hero-mobile bg-cover bg-no-repeat bg-center w-full max-h-[760px] h-[calc(100vh-65px)] md:h-[calc(100vh-81px)] md:bg-hero-desktop">

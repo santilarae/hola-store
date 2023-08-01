@@ -29,7 +29,7 @@ function useFetchApi<T> (endpoint: string, requestInit?: RequestInit) {
     return () => {
       abortController.abort()
     }
-  }, [])
+  }, [endpoint, requestInit])
 
   return {
     data,

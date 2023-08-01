@@ -21,12 +21,12 @@ const ProductSlider = ({ title, products, loading, error }: ProductSlider) => {
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return
     sliderRef.current.swiper.slidePrev()
-  }, [products])
+  }, [])
 
   const handleNext = useCallback(() => {
     if (!sliderRef.current) return
     sliderRef.current.swiper.slideNext()
-  }, [products])
+  }, [])
 
 
   return (
