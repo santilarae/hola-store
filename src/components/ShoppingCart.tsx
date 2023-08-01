@@ -9,7 +9,7 @@ const ShoppingCart = () => {
     <div
       className={`${
         showShoppingCart ? 'visible' : 'invisible'
-      } fixed top-0 left-0 w-full h-screen bg-dark/75 transition duration-500`}
+      } fixed top-0 left-0 w-full h-screen bg-dark/75 transition duration-500 z-50`}
     >
       <aside
         className={`${
