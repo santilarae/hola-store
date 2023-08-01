@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { UIComponents, closeComponent, openComponent } from '../store/slices/ui'
 import {
@@ -11,9 +12,9 @@ import {
 
 const navigation = [
   { to: '/', title: 'Home' },
-  { to: '/', title: 'Products' },
-  { to: '/', title: 'About us' },
-  { to: '/', title: 'Contact' }
+  { to: '/products', title: 'Products' },
+  { to: '/about-us', title: 'About us' },
+  { to: '/contact', title: 'Contact' }
 ]
 
 const Navbar = () => {
@@ -55,7 +56,14 @@ const Navbar = () => {
                 key={link.title}
                 onClick={() => dispatch(closeComponent(UIComponents.Menu))}
               >
-                <a href={link.to}>{link.title}</a>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    isActive ? 'font-semibold' : ''
+                  }
+                >
+                  {link.title}
+                </NavLink>
               </li>
             ))}
           </ul>
