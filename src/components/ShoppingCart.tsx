@@ -22,6 +22,7 @@ const ShoppingCart = () => {
           <button
             className='p-3'
             onClick={() => dispatch(closeComponent(UIComponents.ShoppingCart))}
+            aria-label="Close shopping cart"
           >
             <CloseIcon className='h-6' />
           </button>
@@ -32,18 +33,17 @@ const ShoppingCart = () => {
             Subtotal: $540.000
           </p>
           <div className='flex gap-2 p-4'>
-            <a
-              href=''
+            <button
+
               className='w-full text-center p-2 rounded font-bold text-primary border border-primary pt-3'
             >
               VIEW CART
-            </a>
-            <a
-              href=''
+            </button>
+            <button
               className='w-full text-center p-2 rounded font-bold text-light bg-primary border border-primary pt-3'
             >
               CHECKOUT
-            </a>
+            </button>
           </div>
         </footer>
       </aside>

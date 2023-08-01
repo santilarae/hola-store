@@ -29,10 +29,11 @@ const Navbar = () => {
         <button
           className='text-xl p-3 w-12 h-12 relative md:hidden'
           onClick={() => dispatch(openComponent(UIComponents.Menu))}
+          aria-label="Toogle Menu"
         >
           <MenuIcon className='w-6 h-6' />
         </button>
-        <Link to='/' className='p-3'>
+        <Link to='/' className='p-3' aria-label="Go to Hola Store home">
           <HolaStoreLogo className='h-6 md:h-8' />
         </Link>
         <nav
@@ -46,6 +47,7 @@ const Navbar = () => {
               <button
                 className='p-3 pr-0'
                 onClick={() => dispatch(closeComponent(UIComponents.Menu))}
+                aria-label="Close menu"
               >
                 <CloseIcon className='h-6' />
               </button>
@@ -80,7 +82,7 @@ const Navbar = () => {
               placeholder='Search products...'
               className='w-full px-4 py-3 rounded text-gray placeholder:text-red-neutral'
             />
-            <button className='text-xl p-3'>
+            <button className='text-xl p-3' aria-label="Search products">
               <SearchIcon className='w-6 h-6' />
             </button>
           </form>
@@ -89,6 +91,7 @@ const Navbar = () => {
         <div className='relative ml-auto'>
           <button
             className='text-xl p-3'
+            aria-label="Toggle user menu"
             onClick={() =>
               showUserDropdown
                 ? dispatch(closeComponent(UIComponents.UserDropdown))
@@ -119,6 +122,7 @@ const Navbar = () => {
         </div>
         <button
           className='text-xl p-3 lg:hidden'
+          aria-label="Toggle searchbar"
           onClick={() =>
             showSearchbar
               ? dispatch(closeComponent(UIComponents.Searchbar))
@@ -130,6 +134,7 @@ const Navbar = () => {
         <button
           className='text-xl p-3'
           onClick={() => dispatch(openComponent(UIComponents.ShoppingCart))}
+          aria-label="Toggle shopping cart"
         >
           <CartIcon className='w-6 h-6' />
         </button>

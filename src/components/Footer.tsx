@@ -32,13 +32,13 @@ const Footer = () => {
             and Redux. It was made by Santiago Lara in 2023
           </p>
           <div className='flex gap-4 mt-4'>
-            <button className='bg-primary p-2 rounded-full'>
+            <button aria-label="Facebook icon" className='bg-primary p-2 rounded-full'>
               <FacebookIcon className='h-4 text-light fill-current' />
             </button>
-            <button className='bg-primary p-2 rounded-full'>
+            <button aria-label="Instagram icon" className='bg-primary p-2 rounded-full'>
               <InstagramIcon className='h-4 text-light fill-current' />
             </button>
-            <button className='bg-primary p-2 rounded-full'>
+            <button aria-label="Whatsapp icon" className='bg-primary p-2 rounded-full'>
               <WhatsappIcon className='h-4 text-light fill-current' />
             </button>
           </div>

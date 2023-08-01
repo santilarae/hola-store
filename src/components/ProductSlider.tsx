@@ -40,12 +40,14 @@ const ProductSlider = ({ title, products, loading, error }: ProductSlider) => {
             <button
               className='bg-secondary rounded-full p-1.5 rotate-90'
               onClick={handlePrev}
+              aria-label="Go to prev slide"
             >
               <ArrowIcon className='w-4 h-4' />
             </button>
             <button
               className='bg-secondary rounded-full p-1.5 -rotate-90'
               onClick={handleNext}
+              aria-label="Go to next slide"
             >
               <ArrowIcon className='w-4 h-4' />
             </button>
