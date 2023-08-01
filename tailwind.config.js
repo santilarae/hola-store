@@ -9,6 +9,10 @@ export default {
         light: '#FFFEFE',
         dark: '#2F2F2F',
         neutral: '#CCCCCC'
+      },
+      backgroundImage: {
+        'hero-desktop': "url('/assets/BackgroundHeroDesktop.webp')",
+        'hero-mobile': "url('/assets/BackgroundHeroMobile.webp')"
       }
     }
   },
