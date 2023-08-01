@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { UIComponents, closeComponent, openComponent } from '../store/slices/ui'
 import {
@@ -32,9 +32,9 @@ const Navbar = () => {
         >
           <MenuIcon className='w-6 h-6' />
         </button>
-        <a href='/' className='p-3'>
+        <Link to='/' className='p-3'>
           <HolaStoreLogo className='h-6 md:h-8' />
-        </a>
+        </Link>
         <nav
           className={`${
             showMenu ? 'translate-x-0' : 'translate-x-[-100%]'
