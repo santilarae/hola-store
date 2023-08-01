@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function useFetchApi<T> (endpoint: string) {
+function useFetchApi<T> (endpoint: string, requestInit?: RequestInit) {
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -10,7 +10,9 @@ function useFetchApi<T> (endpoint: string) {
     const fetchData = async () => {
       try {
         const res = await fetch('https://api.escuelajs.co/api/v1' + endpoint, {
-          signal: abortController.signal
+          signal: abortController.signal,
+          ...requestInit,
+          method: 'GET',
         })
         if (!res.ok) {
           throw new Error(`${res.status} ${res.statusText}`)
