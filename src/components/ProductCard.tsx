@@ -6,7 +6,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
   return (
     <Link to={`/product/${product.id}`}>
       <article className='flex flex-col max-w-sm border border-neutral rounded h-full'>
-        <img src={product.images[0]} alt={product.title} />
+        <img src={product.images[0]} alt={product.title} className='aspect-square'/>
         <div className='p-4 h-full flex flex-col justify-between'>
           <p className='flex flex-col'>
             <span>{product.title}</span>

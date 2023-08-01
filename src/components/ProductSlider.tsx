@@ -33,7 +33,7 @@ const ProductSlider = ({ title, products, loading, error }: ProductSlider) => {
     <>
       <section className='max-w-7xl mx-auto my-16 lg:my-20'>
         <header className='px-4 flex justify-between gap-4 mb-6 items-center'>
-          <h2 className='text-2xl uppercase font-bold border-b-4 border-secondary pl-2 pr-4 truncate'>
+          <h2 className='text-2xl uppercase font-bold border-b-4 border-secondary pl-2 pr-4 truncate lg:text-3xl'>
             {title}
           </h2>
           <div className='space-x-2'>
@@ -77,7 +77,7 @@ const ProductSlider = ({ title, products, loading, error }: ProductSlider) => {
             modules={[Pagination]}
           >
             {products.map(product => (
-              <SwiperSlide key={product.title} className='mb-10 h-auto'>
+              <SwiperSlide key={`${product.title}-${product.id}`} className='mb-10 h-auto'>
                 <ProductCard product={product} />
               </SwiperSlide>
             ))}

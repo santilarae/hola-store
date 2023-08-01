@@ -1,4 +1,5 @@
 import BestSellingProducts from '../components/BestSellingProducts'
+import CategoriesSection from '../components/CategoriesSection'
 import Hero from '../components/Hero'
 import MostPopularProducts from '../components/MostPopularProducts'
 
@@ -7,6 +8,7 @@ const HomePage = () => {
     <>
       <Hero />
       <BestSellingProducts />
+      <CategoriesSection />
       <MostPopularProducts />
     </>
   )
