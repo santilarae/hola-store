@@ -24,7 +24,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <header className='sticky top-0 left-0 py-2 px-4 border-b border-neutral/50 md:py-3 bg-light'>
+    <header className='sticky top-0 left-0 py-2 px-4 border-b border-neutral/50 md:py-3 bg-light z-50'>
       <div className='flex items-center max-w-7xl m-auto'>
         <button
           className='text-xl p-3 w-12 h-12 relative md:hidden'
