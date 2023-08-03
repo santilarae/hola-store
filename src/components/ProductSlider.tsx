@@ -12,7 +12,7 @@ export interface ProductSlider {
   title: string
   products: IProduct[]
   loading: boolean
-  error: null | string
+  error: null | Error
 }
 
 const ProductSlider = ({ title, products, loading, error }: ProductSlider) => {
