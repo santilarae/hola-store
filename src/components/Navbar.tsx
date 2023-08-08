@@ -142,7 +142,7 @@ const Navbar = () => {
           <span className='absolute text-light text-xs top-5 left-1/2 -translate-x-1/2'>
             {cartQuantity > 9 ? '+9': cartQuantity}
           </span>
-          <CartIcon className='w-6 h-6' />
+          <CartIcon className='w-6 h-6 text-primary' accentColor='text-secondary' />
         </button>
       </div>
     </header>
