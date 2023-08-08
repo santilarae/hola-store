@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import uiReducer from './slices/ui'
+import productsReducer from './slices/products'
 
 const store = configureStore({
   reducer: {
-    ui: uiReducer
-  }
+    ui: uiReducer,
+    products: productsReducer
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({ serializableCheck: false })
 })
 
 export default store
