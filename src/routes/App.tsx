@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage'
 import MainLayout from '../layout/MainLayout'
 import ProductsPage from '../pages/ProductsPage'
 import { useEffect } from 'react'
+import ProductPage from '../pages/ProductPage'
 
 const App = (): JSX.Element => {
   const location = useLocation()
@@ -14,6 +15,7 @@ const App = (): JSX.Element => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/products' element={<ProductsPage />} />
+        <Route path='/product/:productId' element={<ProductPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </MainLayout>
