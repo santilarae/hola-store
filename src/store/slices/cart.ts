@@ -15,7 +15,9 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<IProduct>) => {
       const index = state.products.findIndex(p => p.id === action.payload.id)
       if (index >= 0) {
-        state.products[index].quantity++
+        if (state.products[index].quantity < 10) {
+          state.products[index].quantity++
+        }
       } else {
         state.products.push({ ...action.payload, quantity: 1 })
       }

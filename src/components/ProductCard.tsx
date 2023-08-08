@@ -135,7 +135,7 @@ const ProductCardInCart = ({ product }: { product: IProductCart }) => {
         <p className='truncate text-sm'>{product.description}</p>
         <p>
           Quantity:
-          <select name='quantity' onChange={e => handleQty(e, product.id)}>
+          <select name='quantity' onChange={e => handleQty(e, product.id)} value={product.quantity}>
             {qtyArr.map((_, i) => (
               <option key={`cart-qty=${i + 1}`} value={i + 1}>
                 {i + 1} {i + 1 >= 10 ? 'units' : 'unit'}
