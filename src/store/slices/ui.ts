@@ -4,7 +4,8 @@ export enum UIComponents {
   Menu = 'showMenu',
   Searchbar = 'showSearchbar',
   UserDropdown = 'showUserDropdown',
-  ShoppingCart = 'showShoppingCart'
+  ShoppingCart = 'showShoppingCart',
+  Filters = 'showFilters',
 }
 
 export interface UIState {
@@ -12,13 +13,15 @@ export interface UIState {
   showSearchbar: boolean
   showUserDropdown: boolean
   showShoppingCart: boolean
+  showFilters: boolean
 }
 
 const initialState = {
   showMenu: false,
   showSearchbar: false,
   showUserDropdown: false,
-  showShoppingCart: false
+  showShoppingCart: false,
+  showFilters: false,
 }
 
 const uiSlice = createSlice({
