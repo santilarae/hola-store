@@ -253,3 +253,38 @@ export const FacebookIcon = (props: SVGProps) => (
     <path d='M12.0078 9L12.4522 6.10437H9.67375V4.22531C9.67375 3.43313 10.0619 2.66094 11.3063 2.66094H12.5694V0.195625C12.5694 0.195625 11.4231 0 10.3272 0C8.03906 0 6.54344 1.38688 6.54344 3.8975V6.10437H4V9H6.54344V16H9.67375V9H12.0078Z' />
   </svg>
 )
+interface TwoColorIcon extends SVGProps{
+  accentColor?: string
+}
+export const FiltersIcon = ({accentColor, ...props}: TwoColorIcon) => (
+  <svg
+    viewBox='0 0 22 20'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}
+  >
+    <path
+      d='M9.6 2.80029H21.3M6 2.80029H1.5M9.6 17.2003H21.3M6 17.2003H1.5M16.8 10.0003H21.3M13.2 10.0003H1.5'
+      stroke='currentColor'
+      className={accentColor}
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M9.6 17.1999C9.6 18.194 8.79411 18.9999 7.8 18.9999C6.80589 18.9999 6 18.194 6 17.1999C6 16.2058 6.80589 15.3999 7.8 15.3999C8.79411 15.3999 9.6 16.2058 9.6 17.1999Z'
+      stroke='currentColor'
+      strokeWidth='1.5'
+    />
+    <path
+      d='M16.8 10.0002C16.8 10.9943 15.9941 11.8002 15 11.8002C14.0058 11.8002 13.2 10.9943 13.2 10.0002C13.2 9.00608 14.0058 8.2002 15 8.2002C15.9941 8.2002 16.8 9.00608 16.8 10.0002Z'
+      stroke='currentColor'
+      strokeWidth='1.5'
+    />
+    <path
+      d='M9.6 2.8C9.6 3.79411 8.79411 4.6 7.8 4.6C6.80589 4.6 6 3.79411 6 2.8C6 1.80589 6.80589 1 7.8 1C8.79411 1 9.6 1.80589 9.6 2.8Z'
+      stroke='currentColor'
+      strokeWidth='1.5'
+    />
+  </svg>
+)

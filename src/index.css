@@ -8,3 +8,36 @@
     @apply text-dark;
   }
 }
+
+.range-price {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+
+.range-price:first-child {
+  @apply h-2 bg-neutral/50 rounded absolute left-0;
+}
+
+.range-price::-webkit-slider-runnable-track {
+  width: 100%;
+  position: absolute;
+  appearance: none;
+  top: 0;
+  pointer-events: none;
+}
+
+.range-classes {
+  @apply w-6 h-6 bg-primary cursor-pointer rounded-full -translate-y-2;
+}
+
+.range-price::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: all;
+  @apply range-classes;
+}
+
+.range-price::-moz-range-thumb {
+  @apply range-classes;
+}
