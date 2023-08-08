@@ -1,10 +1,27 @@
 import { Link } from 'react-router-dom'
 import { CartIcon } from './Icons'
 import { IProduct } from '../types/products'
-import { useEffect, useRef } from 'react'
+import { MouseEventHandler, useEffect, useRef } from 'react'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { addToCart } from '../store/slices/cart'
+import { UIComponents, openComponent } from '../store/slices/ui'
 
 const ProductCard = ({ product }: { product: IProduct }) => {
   const imgRef = useRef<HTMLImageElement>(null)
+  const { products } = useAppSelector(state => state.cart)
+  const dispatch = useAppDispatch()
+  
+  const isInCart =
+    products.findIndex(p => p.id === product.id) >= 0 ? true : false
+
+  const handleAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault()
+    if (isInCart) {
+      dispatch(openComponent(UIComponents.ShoppingCart))
+    } else {
+      dispatch(addToCart(product))
+    }
+  }
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(
@@ -46,8 +63,11 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           <div className='flex items-center justify-between'>
             <p className='pt-2'> ${product.price}</p>
             <button
+              onClick={handleAddToCart}
               aria-label='Add product to cart'
-              className='grayscale brightness-50 opacity-30 border border-primary p-1.5 rounded-full hover:opacity-100 hover:brightness-100 hover:grayscale-0 transition'
+              className={`
+              ${isInCart ? '' : 'grayscale brightness-50 opacity-30'}
+               border border-primary p-1.5 rounded-full hover:opacity-100 hover:brightness-100 hover:grayscale-0 transition`}
             >
               <CartIcon className='w-5 h-5' />
             </button>

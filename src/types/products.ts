@@ -11,3 +11,6 @@ export interface IProduct {
   category: ICategory
 }
 
+export interface IProductCart extends IProduct {
+  quantity: number
+}
