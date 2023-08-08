@@ -9,6 +9,7 @@ import {
   SearchIcon,
   UserIcon
 } from './Icons'
+import cart from '../store/slices/cart'
 
 const navigation = [
   { to: '/', title: 'Home' },
@@ -21,6 +22,8 @@ const Navbar = () => {
   const { showMenu, showSearchbar, showUserDropdown } = useAppSelector(
     state => state.ui
   )
+  const { products } = useAppSelector(state => state.cart);
+  const cartQuantity: number = products.reduce((prev, curr) => prev + curr.quantity, 0)
   const dispatch = useAppDispatch()
 
   return (
@@ -132,10 +135,13 @@ const Navbar = () => {
           <SearchIcon className='w-6 h-6' />
         </button>
         <button
-          className='text-xl p-3'
+          className='text-xl p-3 relative'
           onClick={() => dispatch(openComponent(UIComponents.ShoppingCart))}
           aria-label="Toggle shopping cart"
         >
+          <span className='absolute text-light text-xs top-5 left-1/2 -translate-x-1/2'>
+            {cartQuantity > 9 ? '+9': cartQuantity}
+          </span>
           <CartIcon className='w-6 h-6' />
         </button>
       </div>
