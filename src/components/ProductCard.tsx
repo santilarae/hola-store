@@ -85,7 +85,7 @@ const ProductCardCommon = ({ product }: { product: IProduct }) => {
               ${isInCart ? '' : 'grayscale brightness-50 opacity-30'}
                border border-primary p-1.5 rounded-full hover:opacity-100 hover:brightness-100 hover:grayscale-0 transition`}
             >
-              <CartIcon className='w-5 h-5' />
+              <CartIcon className='w-5 h-5 text-primary' accentColor='text-secondary'/>
             </button>
           </div>
         </div>
