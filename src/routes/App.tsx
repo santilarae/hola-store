@@ -4,11 +4,15 @@ import MainLayout from '../layout/MainLayout'
 import ProductsPage from '../pages/ProductsPage'
 import { useEffect } from 'react'
 import ProductPage from '../pages/ProductPage'
+import { useAppDispatch } from '../hooks/redux'
+import { closeAllComponent } from '../store/slices/ui'
 
 const App = (): JSX.Element => {
   const location = useLocation()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     window.scrollTo(0, 0)
+    dispatch(closeAllComponent())
   }, [location.pathname])
   return (
     <Routes>
