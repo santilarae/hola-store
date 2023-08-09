@@ -4,6 +4,8 @@ import MainLayout from '../layout/MainLayout'
 import ProductsPage from '../pages/ProductsPage'
 import { useEffect } from 'react'
 import ProductPage from '../pages/ProductPage'
+import LoginPage from '../pages/LoginPage'
+import SignupPage from '../pages/SignupPage'
 import { useAppDispatch } from '../hooks/redux'
 import { closeAllComponent } from '../store/slices/ui'
 
@@ -22,6 +24,8 @@ const App = (): JSX.Element => {
         <Route path='/product/:productId' element={<ProductPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Route>
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/sign-up' element={<SignupPage />} />
     </Routes>
   )
 }
