@@ -11,14 +11,14 @@ const App = (): JSX.Element => {
     window.scrollTo(0, 0)
   }, [location.pathname])
   return (
-    <MainLayout>
-      <Routes>
+    <Routes>
+      <Route path='' element={<MainLayout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/product/:productId' element={<ProductPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
-      </Routes>
-    </MainLayout>
+      </Route>
+    </Routes>
   )
 }
 

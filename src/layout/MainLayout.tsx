@@ -1,13 +1,15 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import ShoppingCart from '../components/ShoppingCart'
 import Footer from '../components/Footer'
+import { Outlet } from 'react-router-dom'
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <main> {children}</main>
+      <main>
+        <Outlet />
+      </main>
       <Footer />
       <ShoppingCart />
     </>
