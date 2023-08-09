@@ -18,7 +18,7 @@ const ShoppingCart = () => {
 
   return (
     <SideNav show={showShoppingCart} onClose={handleClose}>
-      <SideNav.Header title='Cart' icon={<CartIcon className='' />} />
+      <SideNav.Header title='Cart' icon={<CartIcon className='text-primary' accentColor='text-secondary' />} />
       <SideNav.Content>
         {products.map(product => (
           <ProductCard
