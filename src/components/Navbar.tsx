@@ -1,6 +1,11 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { UIComponents, closeComponent, openComponent } from '../store/slices/ui'
+import {
+  UIComponents,
+  closeAllComponent,
+  closeComponent,
+  openComponent
+} from '../store/slices/ui'
 import {
   CartIcon,
   CloseIcon,
@@ -9,7 +14,7 @@ import {
   SearchIcon,
   UserIcon
 } from './Icons'
-import cart from '../store/slices/cart'
+import { logoutUser } from '../store/slices/user'
 
 const navigation = [
   { to: '/', title: 'Home' },
@@ -22,9 +27,20 @@ const Navbar = () => {
   const { showMenu, showSearchbar, showUserDropdown } = useAppSelector(
     state => state.ui
   )
-  const { products } = useAppSelector(state => state.cart);
-  const cartQuantity: number = products.reduce((prev, curr) => prev + curr.quantity, 0)
+  const user = useAppSelector(state => state.user)
+  const navigate = useNavigate()
+
+  const { products } = useAppSelector(state => state.cart)
+  const cartQuantity: number = products.reduce(
+    (prev, curr) => prev + curr.quantity,
+    0
+  )
   const dispatch = useAppDispatch()
+
+  const handleLogout = () => {
+    dispatch(logoutUser())
+    navigate('/')
+  }
 
   return (
     <header className='sticky top-0 left-0 py-2 px-4 border-b border-neutral/50 md:py-3 bg-light z-40'>
@@ -32,11 +48,11 @@ const Navbar = () => {
         <button
           className='text-xl p-3 w-12 h-12 relative md:hidden'
           onClick={() => dispatch(openComponent(UIComponents.Menu))}
-          aria-label="Toogle Menu"
+          aria-label='Toogle Menu'
         >
           <MenuIcon className='w-6 h-6' />
         </button>
-        <Link to='/' className='p-3' aria-label="Go to Hola Store home">
+        <Link to='/' className='p-3' aria-label='Go to Hola Store home'>
           <HolaStoreLogo className='h-6 md:h-8' />
         </Link>
         <nav
@@ -50,7 +66,7 @@ const Navbar = () => {
               <button
                 className='p-3 pr-0'
                 onClick={() => dispatch(closeComponent(UIComponents.Menu))}
-                aria-label="Close menu"
+                aria-label='Close menu'
               >
                 <CloseIcon className='h-6' />
               </button>
@@ -85,7 +101,7 @@ const Navbar = () => {
               placeholder='Search products...'
               className='w-full px-4 py-3 rounded text-gray placeholder:text-red-neutral'
             />
-            <button className='text-xl p-3' aria-label="Search products">
+            <button className='text-xl p-3' aria-label='Search products'>
               <SearchIcon className='w-6 h-6' />
             </button>
           </form>
@@ -94,7 +110,7 @@ const Navbar = () => {
         <div className='relative ml-auto'>
           <button
             className='text-xl p-3'
-            aria-label="Toggle user menu"
+            aria-label='Toggle user menu'
             onClick={() =>
               showUserDropdown
                 ? dispatch(closeComponent(UIComponents.UserDropdown))
@@ -105,27 +121,49 @@ const Navbar = () => {
           </button>
           {showUserDropdown && (
             <ul className='absolute mt-2 top-10 right-0 border border-neutral bg-light rounded drop-shadow md:top-auto divide-y'>
-              <li>
-                <a href='' className='block whitespace-pre p-2 px-4'>
-                  My profile
-                </a>
-              </li>
-              <li>
-                <a href='' className='block whitespace-pre p-2 px-4'>
-                  My profile
-                </a>
-              </li>
-              <li>
-                <a href='' className='block whitespace-pre p-2 px-4'>
-                  My profile
-                </a>
-              </li>
+              {!user.email && (
+                <>
+                  <li>
+                    <Link to='/login' className='block whitespace-pre p-2 px-4'>
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to='/sign-up'
+                      className='block whitespace-pre p-2 px-4'
+                    >
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              )}
+              {user.email && (
+                <>
+                  <li>
+                    <Link
+                      to='/profile'
+                      className='block whitespace-pre p-2 px-4'
+                    >
+                      My profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className='block w-full whitespace-pre p-2 px-4 bg-primary/10 text-primary'
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           )}
         </div>
         <button
           className='text-xl p-3 lg:hidden'
-          aria-label="Toggle searchbar"
+          aria-label='Toggle searchbar'
           onClick={() =>
             showSearchbar
               ? dispatch(closeComponent(UIComponents.Searchbar))
@@ -137,12 +175,15 @@ const Navbar = () => {
         <button
           className='text-xl p-3 relative'
           onClick={() => dispatch(openComponent(UIComponents.ShoppingCart))}
-          aria-label="Toggle shopping cart"
+          aria-label='Toggle shopping cart'
         >
           <span className='absolute text-light text-xs top-5 left-1/2 -translate-x-1/2'>
-            {cartQuantity > 9 ? '+9': cartQuantity}
+            {cartQuantity > 9 ? '+9' : cartQuantity}
           </span>
-          <CartIcon className='w-6 h-6 text-primary' accentColor='text-secondary' />
+          <CartIcon
+            className='w-6 h-6 text-primary'
+            accentColor='text-secondary'
+          />
         </button>
       </div>
     </header>
