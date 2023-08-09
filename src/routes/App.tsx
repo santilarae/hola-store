@@ -6,16 +6,33 @@ import { useEffect } from 'react'
 import ProductPage from '../pages/ProductPage'
 import LoginPage from '../pages/LoginPage'
 import SignupPage from '../pages/SignupPage'
-import { useAppDispatch } from '../hooks/redux'
-import { closeAllComponent } from '../store/slices/ui'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { UIComponents, closeAllComponent } from '../store/slices/ui'
 
 const App = (): JSX.Element => {
   const location = useLocation()
+  const ui = useAppSelector(state => state.ui)
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(closeAllComponent())
   }, [location.pathname])
+
+  useEffect(() => {
+    const overflowHidden = Object.entries(ui).some(
+      ([key, value]) => value && key !== UIComponents.UserDropdown
+    )
+
+    if (overflowHidden) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [ui])
+
   return (
     <Routes>
       <Route path='' element={<MainLayout />}>
