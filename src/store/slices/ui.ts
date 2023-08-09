@@ -35,10 +35,15 @@ const uiSlice = createSlice({
     },
     closeComponent (state, action: PayloadAction<UIComponents>) {
       state[action.payload as keyof UIState] = false
-    }
+    },
+    closeAllComponent (state) {
+      Object.keys(state).forEach(key => {
+        state[key as keyof UIState] = false
+      })
+    },
   }
 })
 
-export const { openComponent, closeComponent } = uiSlice.actions
+export const { openComponent, closeComponent, closeAllComponent } = uiSlice.actions
 
 export default uiSlice.reducer
