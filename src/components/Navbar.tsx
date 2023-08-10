@@ -1,4 +1,4 @@
-import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import {
   UIComponents,
@@ -15,6 +15,8 @@ import {
   UserIcon
 } from './Icons'
 import { logoutUser } from '../store/slices/user'
+import { FormEventHandler, useEffect, useState } from 'react'
+import { setFilters } from '../store/slices/products'
 
 const navigation = [
   { to: '/', title: 'Home' },
@@ -26,11 +28,18 @@ const navigation = [
 const Navbar = () => {
   const { showMenu, showSearchbar, showUserDropdown } = useAppSelector(
     state => state.ui
-  )
-  const user = useAppSelector(state => state.user)
+    )
+    const user = useAppSelector(state => state.user)
+    const { products } = useAppSelector(state => state.cart)
+    const { filters } = useAppSelector(state => state.products)
+    const [query, setQuery] = useState<string>('')
+
   const navigate = useNavigate()
 
-  const { products } = useAppSelector(state => state.cart)
+  useEffect(()=>{
+    setQuery(filters.title || '')
+  }, [filters.title])
+
   const cartQuantity: number = products.reduce(
     (prev, curr) => prev + curr.quantity,
     0
@@ -40,6 +49,15 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logoutUser())
     navigate('/')
+  }
+
+  const handleSearch: FormEventHandler<HTMLFormElement> = e => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const query = formData.get('title')?.toString()
+    dispatch(closeAllComponent())
+    dispatch(setFilters({ ...filters, title: query }))
+    navigate('/products')
   }
 
   return (
@@ -95,11 +113,18 @@ const Navbar = () => {
             showSearchbar ? 'translate-x-0 z-10' : 'translate-x-full'
           } fixed bg-light w-full h-[calc(100vh-64px)] top-16 left-0 p-4 border-t border-neutral transition-transform duration-500 md:top-20 md:h-[calc(100vh-80px)] lg:translate-x-0 lg:static lg:h-auto lg:border-none lg:p-0 lg:max-w-xs`}
         >
-          <form className='max-w-7xl m-auto flex border border-neutral rounded bg-light '>
+          <form
+            className='max-w-7xl m-auto flex border border-neutral rounded bg-light'
+            onSubmit={handleSearch}
+          >
             <input
               type='text'
+              name='title'
+              required
               placeholder='Search products...'
               className='w-full px-4 py-3 rounded text-gray placeholder:text-red-neutral'
+              value={query}
+              onChange={(e)=> setQuery(e.target.value)}
             />
             <button className='text-xl p-3' aria-label='Search products'>
               <SearchIcon className='w-6 h-6' />
