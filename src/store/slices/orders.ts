@@ -16,7 +16,7 @@ const ordersSlice = createSlice({
   initialState,
   reducers: {
     addOrder: (state, action: PayloadAction<IOrder>) => {
-      state = [...state, action.payload]
+      state.push(action.payload)
       const ordersLS = localStorage.getItem(ORDERS_KEY)
       if (!ordersLS) {
         localStorage.setItem(ORDERS_KEY, JSON.stringify(state))
