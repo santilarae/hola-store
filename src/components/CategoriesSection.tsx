@@ -1,9 +1,19 @@
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import useFetchApi from '../hooks/useFetchApi'
+import { setFilters } from '../store/slices/products'
 import { ICategory } from '../types/category'
 import { Link } from 'react-router-dom'
 
 const CategoriesSection = () => {
   const { data, loading } = useFetchApi<ICategory[]>('/categories')
+  const { filters } = useAppSelector(state => state.products)
+  const dispatch = useAppDispatch()
+
+  const handleGoToCategory = (category: ICategory) => {
+    dispatch(
+      setFilters({ ...filters, category: { ...category, productQuantity: 0 } })
+    )
+  }
   return (
     <>
       <section className='px-4'>
@@ -20,7 +30,10 @@ const CategoriesSection = () => {
                 key={category.name}
                 className='rounded border border-neutral bg-neutral/10 w-[calc((100%/2)-2px)] sm:w-[calc((100%/3)-2px)] md:w-[calc((100%/4)-2px)] lg:w-[calc((100%/5)-2px)]'
               >
-                <Link to={`/category/${category.id}`}>
+                <Link
+                  to='products'
+                  onClick={() => handleGoToCategory(category)}
+                >
                   <img
                     className='aspect-square object-cover w-full'
                     src={category.image}
