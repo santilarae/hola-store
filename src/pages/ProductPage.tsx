@@ -76,13 +76,13 @@ const ProductPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <section className='flex justify-end min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)]'>
-        <div className='hidden sm:grid sm:grid-cols-2 border-r border-neutral auto-rows-min'>
+      <section className='grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_450px] lg:grid-cols-[1fr_490px] sm:min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)]'>
+        <div className='hidden sm:grid sm:grid-cols-2 border-r border-neutral auto-rows-min bg-neutral/50'>
           {product?.images.map(image => (
-            <img key={image} src={image} className='w-full' />
+            <img key={image} src={image} className='w-full col-span-full xl:col-span-1' />
           ))}
         </div>
-        <div className='px-4 py-8 sm:p-8'>
+        <div className='px-4 py-8 sm:p-8 w-full'>
           <div className='sm:sticky sm:top-28'>
             <Link
               to='/products'
