@@ -103,7 +103,7 @@ const SignupPage = () => {
         ))}
         <p className='text-center mt-8'>
           Already have an account?
-          <Link to='/login' className='text-primary underline ml-2'>
+          <Link to='/login' state={{...location.state}} className='text-primary underline ml-2'>
             Login
           </Link>
         </p>

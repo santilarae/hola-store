@@ -89,7 +89,7 @@ const LoginPage = () => {
         ))}
         <p className='text-center mt-8'>
           Don't have an account?
-          <Link to='/sign-up' className='text-primary underline ml-2'>
+          <Link to='/sign-up' state={{...location.state}} className='text-primary underline ml-2'>
             Sign up
           </Link>
         </p>
