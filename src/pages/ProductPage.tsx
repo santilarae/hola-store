@@ -76,7 +76,7 @@ const ProductPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <section className='flex'>
+      <section className='flex justify-end min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)]'>
         <div className='hidden sm:grid sm:grid-cols-2 border-r border-neutral auto-rows-min'>
           {product?.images.map(image => (
             <img key={image} src={image} className='w-full' />
