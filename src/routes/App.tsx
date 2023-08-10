@@ -13,6 +13,7 @@ import {
   openComponent
 } from '../store/slices/ui'
 import OrderPage from '../pages/OrderPage'
+import OrdersPage from '../pages/OrdersPage'
 
 const App = (): JSX.Element => {
   const location = useLocation()
@@ -49,6 +50,7 @@ const App = (): JSX.Element => {
         <Route path='/' element={<HomePage />} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/product/:productId' element={<ProductPage />} />
+        <Route path='/orders' element={<OrdersPage />} />
         <Route path='/orders/:orderId' element={<OrderPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Route>

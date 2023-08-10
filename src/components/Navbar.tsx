@@ -180,6 +180,14 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link
+                      to='/orders'
+                      className='block whitespace-pre p-2 px-4'
+                    >
+                      My orders
+                    </Link>
+                  </li>
+                  <li>
                     <button
                       onClick={handleLogout}
                       className='block w-full whitespace-pre p-2 px-4 bg-primary/10 text-primary'
