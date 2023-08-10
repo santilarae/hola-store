@@ -14,6 +14,7 @@ import {
 } from '../store/slices/ui'
 import OrderPage from '../pages/OrderPage'
 import OrdersPage from '../pages/OrdersPage'
+import AboutUsPage from '../pages/AboutUsPage'
 
 const App = (): JSX.Element => {
   const location = useLocation()
@@ -52,6 +53,7 @@ const App = (): JSX.Element => {
         <Route path='/product/:productId' element={<ProductPage />} />
         <Route path='/orders' element={<OrdersPage />} />
         <Route path='/orders/:orderId' element={<OrderPage />} />
+        <Route path='/about-us' element={<AboutUsPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Route>
       <Route path='/login' element={<LoginPage />} />
