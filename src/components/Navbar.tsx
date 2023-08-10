@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import {
   UIComponents,
@@ -28,15 +28,16 @@ const navigation = [
 const Navbar = () => {
   const { showMenu, showSearchbar, showUserDropdown } = useAppSelector(
     state => state.ui
-    )
-    const user = useAppSelector(state => state.user)
-    const { products } = useAppSelector(state => state.cart)
-    const { filters } = useAppSelector(state => state.products)
-    const [query, setQuery] = useState<string>('')
+  )
+  const user = useAppSelector(state => state.user)
+  const { products } = useAppSelector(state => state.cart)
+  const { filters } = useAppSelector(state => state.products)
+  const [query, setQuery] = useState<string>('')
 
+  const location = useLocation()
   const navigate = useNavigate()
 
-  useEffect(()=>{
+  useEffect(() => {
     setQuery(filters.title || '')
   }, [filters.title])
 
@@ -124,7 +125,7 @@ const Navbar = () => {
               placeholder='Search products...'
               className='w-full px-4 py-3 rounded text-gray placeholder:text-red-neutral'
               value={query}
-              onChange={(e)=> setQuery(e.target.value)}
+              onChange={e => setQuery(e.target.value)}
             />
             <button className='text-xl p-3' aria-label='Search products'>
               <SearchIcon className='w-6 h-6' />
@@ -149,13 +150,18 @@ const Navbar = () => {
               {!user.email && (
                 <>
                   <li>
-                    <Link to='/login' className='block whitespace-pre p-2 px-4'>
+                    <Link
+                      to='/login'
+                      state={{ prevLocation: location.pathname }}
+                      className='block whitespace-pre p-2 px-4'
+                    >
                       Login
                     </Link>
                   </li>
                   <li>
                     <Link
                       to='/sign-up'
+                      state={{ prevLocation: location.pathname }}
                       className='block whitespace-pre p-2 px-4'
                     >
                       Sign up

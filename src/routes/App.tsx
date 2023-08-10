@@ -7,7 +7,11 @@ import ProductPage from '../pages/ProductPage'
 import LoginPage from '../pages/LoginPage'
 import SignupPage from '../pages/SignupPage'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { UIComponents, closeAllComponent } from '../store/slices/ui'
+import {
+  UIComponents,
+  closeAllComponent,
+  openComponent
+} from '../store/slices/ui'
 
 const App = (): JSX.Element => {
   const location = useLocation()
@@ -16,7 +20,12 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    dispatch(closeAllComponent())
+    const openCart = location.state?.fromCart || false
+    if (openCart) {
+      dispatch(openComponent(UIComponents.ShoppingCart))
+    } else {
+      dispatch(closeAllComponent())
+    }
   }, [location.pathname])
 
   useEffect(() => {
