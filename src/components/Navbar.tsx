@@ -22,7 +22,6 @@ const navigation = [
   { to: '/', title: 'Home' },
   { to: '/products', title: 'Products' },
   { to: '/about-us', title: 'About us' },
-  { to: '/contact', title: 'Contact' }
 ]
 
 const Navbar = () => {

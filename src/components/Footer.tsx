@@ -8,7 +8,7 @@ import {
 } from './Icons'
 
 const categoryLinks = ['Clothes', 'Electronics', 'Furniture', 'Shoes', 'Others']
-const quickLinks = ['Home', 'Products', 'About Us', 'Contact']
+const quickLinks = ['Home', 'Products', 'About Us']
 const supportLinks = ['FAQs', 'Help', 'Terms and Conditions', 'Privacy Policy']
 
 interface IFooterSection {
