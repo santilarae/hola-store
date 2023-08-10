@@ -3,6 +3,7 @@ import uiReducer from './slices/ui'
 import productsReducer from './slices/products'
 import cartReducer from './slices/cart'
 import userReducer from './slices/user'
+import ordersReducer from './slices/orders'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     products: productsReducer,
     cart: cartReducer,
     user: userReducer,
+    order: ordersReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false })
