@@ -1,14 +1,15 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { HolaStoreLogo } from '../components/Icons'
 import LoginLayout from '../layout/LoginLayout'
 import { FormEventHandler, useState } from 'react'
 import { IUser } from '../types/user'
-import { useAppDispatch } from '../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { loginUser } from '../store/slices/user'
 
 const LoginPage = () => {
   const [errors, setErrors] = useState<string[]>([])
   const location = useLocation()
+  const user = useAppSelector(state => state.user)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -37,6 +38,10 @@ const LoginPage = () => {
     }
 
     setErrors(['Please check your email and password'])
+  }
+
+  if(user.username){
+    return <Navigate to='/orders'/>
   }
   return (
     <LoginLayout formPosition='left'>

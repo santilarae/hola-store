@@ -1,8 +1,8 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import MainLayout from '../layout/MainLayout'
 import ProductsPage from '../pages/ProductsPage'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import ProductPage from '../pages/ProductPage'
 import LoginPage from '../pages/LoginPage'
 import SignupPage from '../pages/SignupPage'
@@ -20,6 +20,7 @@ const noOverflowHiddenPaths = ['/login', '/sign-up']
 
 const App = (): JSX.Element => {
   const location = useLocation()
+  const user = useAppSelector(state => state.user)
   const ui = useAppSelector(state => state.ui)
   const dispatch = useAppDispatch()
 
@@ -47,14 +48,21 @@ const App = (): JSX.Element => {
     }
   }, [ui, location.pathname])
 
+  const requireAuth = (page: React.ReactNode) => {
+    if(user.username){
+      return page
+    }
+    return <Navigate to='/login' state={{prevLocation: location.pathname}}/>
+  }
+
   return (
     <Routes>
       <Route path='' element={<MainLayout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/product/:productId' element={<ProductPage />} />
-        <Route path='/orders' element={<OrdersPage />} />
-        <Route path='/orders/:orderId' element={<OrderPage />} />
+        <Route path='/orders' element={requireAuth(<OrdersPage />)} />
+        <Route path='/orders/:orderId' element={requireAuth(<OrderPage />)} />
         <Route path='/about-us' element={<AboutUsPage />} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Route>
