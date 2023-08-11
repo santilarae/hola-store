@@ -9,6 +9,7 @@ import { Sort, setFilters } from '../store/slices/products'
 import { CartIcon, DeliveryIcon } from '../components/Icons'
 import useFetchApi from '../hooks/useFetchApi'
 import { IProduct } from '../types/products'
+import { UIComponents, openComponent } from '../store/slices/ui'
 
 const ProductPage = () => {
   const { productId } = useParams()
@@ -25,6 +26,7 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (product) {
       dispatch(addToCart(product))
+      dispatch(openComponent(UIComponents.ShoppingCart))
     }
   }
 

@@ -32,11 +32,9 @@ const ProductCardCommon = ({ product }: { product: IProduct }) => {
 
   const handleAddToCart: MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault()
-    if (isInCart) {
-      dispatch(openComponent(UIComponents.ShoppingCart))
-    } else {
-      dispatch(addToCart(product))
-    }
+
+    dispatch(addToCart(product))
+    dispatch(openComponent(UIComponents.ShoppingCart))
   }
   const imgRef = useRef<HTMLImageElement>(null)
   useEffect(() => {
@@ -85,7 +83,10 @@ const ProductCardCommon = ({ product }: { product: IProduct }) => {
               ${isInCart ? '' : 'grayscale brightness-50 opacity-30'}
                border border-primary p-1.5 rounded-full hover:opacity-100 hover:brightness-100 hover:grayscale-0 transition`}
             >
-              <CartIcon className='w-5 h-5 text-primary' accentColor='text-secondary'/>
+              <CartIcon
+                className='w-5 h-5 text-primary'
+                accentColor='text-secondary'
+              />
             </button>
           </div>
         </div>
@@ -135,7 +136,11 @@ const ProductCardInCart = ({ product }: { product: IProductCart }) => {
         <p className='truncate text-sm'>{product.description}</p>
         <p>
           Quantity:
-          <select name='quantity' onChange={e => handleQty(e, product.id)} value={product.quantity}>
+          <select
+            name='quantity'
+            onChange={e => handleQty(e, product.id)}
+            value={product.quantity}
+          >
             {qtyArr.map((_, i) => (
               <option key={`cart-qty=${i + 1}`} value={i + 1}>
                 {i + 1} {i + 1 >= 10 ? 'units' : 'unit'}
