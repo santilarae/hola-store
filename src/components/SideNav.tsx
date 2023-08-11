@@ -24,7 +24,7 @@ const SideNav = ({ show, children, onClose }: SideNavProps) => {
     <div
       className={`${
         show ? 'visible opacity-100 delay-0' : 'invisible opacity-0 delay-200'
-      } fixed top-0 left-0 w-full h-screen bg-dark/75 transition-[opacity,visibility] duration-500  z-50`}
+      } fixed top-0 left-0 w-full h-viewport bg-dark/75 transition-[opacity,visibility] duration-500  z-50`}
       onClick={handleClose}
     >
       <aside

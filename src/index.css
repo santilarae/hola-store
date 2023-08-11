@@ -41,3 +41,10 @@
 .range-price::-moz-range-thumb {
   @apply range-classes;
 }
+
+.h-viewport {
+  height: 100vh;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: stretch;
+}
