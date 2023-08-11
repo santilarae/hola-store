@@ -16,6 +16,8 @@ import OrderPage from '../pages/OrderPage'
 import OrdersPage from '../pages/OrdersPage'
 import AboutUsPage from '../pages/AboutUsPage'
 
+const noOverflowHiddenPaths = ['/login', '/sign-up']
+
 const App = (): JSX.Element => {
   const location = useLocation()
   const ui = useAppSelector(state => state.ui)
@@ -36,14 +38,14 @@ const App = (): JSX.Element => {
       ([key, value]) => value && key !== UIComponents.UserDropdown
     )
 
-    if (overflowHidden) {
+    if (overflowHidden && !noOverflowHiddenPaths.includes(location.pathname)) {
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
       document.body.style.overflow = 'auto'
     }
-  }, [ui])
+  }, [ui, location.pathname])
 
   return (
     <Routes>
