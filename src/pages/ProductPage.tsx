@@ -27,7 +27,7 @@ const ProductPage = () => {
       dispatch(addToCart(product))
     }
   }
-  
+
   const handleGoToCategory = () => {
     if (product?.category) {
       dispatch(
@@ -76,10 +76,14 @@ const ProductPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <section className='grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_450px] lg:grid-cols-[1fr_490px] sm:min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)]'>
+      <section className='sm:grid sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_450px] lg:grid-cols-[1fr_490px]'>
         <div className='hidden sm:grid sm:grid-cols-2 border-r border-neutral auto-rows-min bg-neutral/50'>
           {product?.images.map(image => (
-            <img key={image} src={image} className='w-full col-span-full xl:col-span-1' />
+            <img
+              key={image}
+              src={image}
+              className='w-full col-span-full xl:col-span-1'
+            />
           ))}
         </div>
         <div className='px-4 py-8 sm:p-8 w-full'>
@@ -111,7 +115,7 @@ const ProductPage = () => {
               </span>
             )}
             <p className='flex items-center mt-6'>
-              <DeliveryIcon className='w-8 mr-4'/>
+              <DeliveryIcon className='w-8 mr-4' />
               Free delivery on selected cities
             </p>
           </div>
