@@ -172,14 +172,6 @@ const Navbar = () => {
                 <>
                   <li>
                     <Link
-                      to='/profile'
-                      className='block whitespace-pre p-2 px-4'
-                    >
-                      My profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
                       to='/orders'
                       className='block whitespace-pre p-2 px-4'
                     >
